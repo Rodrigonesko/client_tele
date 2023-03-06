@@ -27,11 +27,13 @@ const Login = () => {
                 withCredentials: true
             })
 
-            if (result.status === 200) {
+            const cookie = result.data.token
+
+            document.cookie = `token=${cookie}`
+
+            if(result.status === 200){
                 navigate('/')
             }
-
-            console.log(result);
 
             setLoading(false)
 
