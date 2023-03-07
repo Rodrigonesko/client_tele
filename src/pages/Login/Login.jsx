@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from 'axios'
-import { Button, Paper, TextField, CircularProgress, Container, Box, Typography } from "@mui/material";
+import { Button, Paper, TextField, CircularProgress, Container, Box, Typography, Alert, AlertTitle } from "@mui/material";
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -8,6 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
 
@@ -31,7 +32,7 @@ const Login = () => {
 
             document.cookie = `token=${cookie}`
 
-            if(result.status === 200){
+            if (result.status === 200) {
                 navigate('/')
             }
 
@@ -39,6 +40,8 @@ const Login = () => {
 
         } catch (error) {
             console.log(error);
+            setError(true)
+            setLoading(false)
         }
 
     }
@@ -56,6 +59,14 @@ const Login = () => {
                                 <CircularProgress style={{ position: 'absolute', left: '48.5%', top: '50%' }} />
                             ) : null
                         }
+                        {
+                            error ? (
+                                <Alert severity="error">
+                                    <AlertTitle>Erro</AlertTitle>
+                                    Usuário ou senha incorretos
+                                </Alert>
+                            ) : null
+                        }
                         <Box p={2}>
                             <TextField label='E-mail' type='email' onChange={(e) => { setEmail(e.target.value) }} />
                         </Box>
@@ -69,7 +80,6 @@ const Login = () => {
                 </Box>
             </Container>
         </section>
-
     )
 }
 
