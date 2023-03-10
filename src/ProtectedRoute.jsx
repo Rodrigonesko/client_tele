@@ -2,16 +2,25 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import AuthContext from "./context/AuthContext";
 import Axios from 'axios'
+import config from "./config/axiosHeader";
 
 const ProtectedRoute = ({ children }) => {
 
-    const {setAccessLevel, name, setName} = useContext(AuthContext)
+    const { setAccessLevel, name, setName } = useContext(AuthContext)
 
     const navigate = useNavigate()
 
     const verifyToken = async () => {
         try {
-            const result = await Axios.get(`${process.env.REACT_APP_API_KEY}/verifyToken`, { withCredentials: true })
+
+
+            const token = document.cookie.split('=')[1]
+
+            if (!token) {
+                navigate('/login')
+            }
+
+            const result = await Axios.get(`${process.env.REACT_APP_API_KEY}/verifyToken`, { withCredentials: true, headers: config.headers })
 
             setName(result.data.name)
             setAccessLevel(result.data.accessLevel)
