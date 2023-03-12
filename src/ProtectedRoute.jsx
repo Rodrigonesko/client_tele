@@ -11,16 +11,19 @@ const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate()
 
     const verifyToken = async () => {
+
         try {
-
-
             const token = document.cookie.split('=')[1]
 
             if (!token) {
                 navigate('/login')
             }
 
-            const result = await Axios.get(`${process.env.REACT_APP_API_KEY}/verifyToken`, { withCredentials: true, headers: config.headers })
+            const result = await Axios.get(`${process.env.REACT_APP_API_KEY}/verifyToken`, {
+                withCredentials: true, headers: {
+                    authorization: `Bearer ${document.cookie.split('=')[1]}`
+                }
+            })
 
             setName(result.data.name)
             setAccessLevel(result.data.accessLevel)
@@ -28,7 +31,6 @@ const ProtectedRoute = ({ children }) => {
         } catch (error) {
             navigate('/login')
         }
-
     }
 
     useEffect(() => {

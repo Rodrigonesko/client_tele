@@ -26,7 +26,7 @@ function Header(props) {
                 </ListItem>
                 <ListItem>
                     <ListItemButton sx={{ textAlign: 'center' }}>
-                        <ListItemText primary='Chats' />
+                        <ListItemText>oii</ListItemText>
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
@@ -42,7 +42,7 @@ function Header(props) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <AppBar component="nav">
+            <AppBar component="nav" position='relative'>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -61,13 +61,13 @@ function Header(props) {
                         LPL
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        <Button sx={{ color: '#fff' }}>
+                        <Button sx={{ color: '#fff' }} href='/'>
                             Home
                         </Button>
-                        <Button sx={{ color: '#fff' }}>
+                        <Button sx={{ color: '#fff' }} href='/chats'>
                             Chats
                         </Button>
-                        <Button sx={{ color: '#fff' }}>
+                        <Button sx={{ color: '#fff' }} href='/login'>
                             Sair
                         </Button>
                     </Box>
