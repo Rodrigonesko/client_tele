@@ -3,10 +3,10 @@ import Header from "../../components/Header/Header";
 import { Paper, Grid, Divider, TextField, Typography, List, ListItem, ListItemIcon, ListItemText, Avatar, Fab } from "@mui/material";
 import Axios from 'axios'
 import { getCookie } from "react-use-cookie";
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 
-const ENDPOINT = process.env.REACT_APP_API_KEY; //URL do servidor Socket.IO
-const socket = socketIOClient(ENDPOINT);
+// const ENDPOINT = process.env.REACT_APP_API_KEY; //URL do servidor Socket.IO
+// const socket = socketIOClient(ENDPOINT);
 
 const Chats = () => {
 
@@ -47,14 +47,14 @@ const Chats = () => {
     useEffect(() => {
         buscarConversas()
 
-        socket.on("teste", (e) => {
-            console.log("Conectado ao servidor Socket.IO");
-            console.log(e);
-            buscarConversas()
-            buscarMensagens(chatAtivo.whatsapp)
-            // const som = new Audio('notificacao.mp3')
-            // som.play()
-        });
+        // socket.on("teste", (e) => {
+        //     console.log("Conectado ao servidor Socket.IO");
+        //     console.log(e);
+        //     buscarConversas()
+        //     buscarMensagens(chatAtivo.whatsapp)
+        //     // const som = new Audio('notificacao.mp3')
+        //     // som.play()
+        // });
 
     }, [])
 
