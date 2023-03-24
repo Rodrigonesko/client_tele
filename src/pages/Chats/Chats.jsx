@@ -5,7 +5,7 @@ import Axios from 'axios'
 import { getCookie } from "react-use-cookie";
 import socketIOClient from "socket.io-client";
 
-const ENDPOINT = "http://10.0.121.55:3002"; //URL do servidor Socket.IO
+const ENDPOINT = process.env.REACT_APP_API_KEY; //URL do servidor Socket.IO
 const socket = socketIOClient(ENDPOINT);
 
 const Chats = () => {
