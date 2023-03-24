@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import AuthContext from "./context/AuthContext";
 import Axios from 'axios'
-import config from "./config/axiosHeader";
+import { getCookie } from "react-use-cookie";
 
 const ProtectedRoute = ({ children }) => {
 
@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children }) => {
 
             const result = await Axios.get(`${process.env.REACT_APP_API_KEY}/verifyToken`, {
                 withCredentials: true, headers: {
-                    authorization: `Bearer ${document.cookie.split('=')[1]}`
+                    authorization: `Bearer ${getCookie('token')}`
                 }
             })
 
